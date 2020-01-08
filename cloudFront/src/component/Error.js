@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ErrorBoundary extends Component {
@@ -24,8 +24,6 @@ class ErrorBoundary extends Component {
     render() {
         const { hasError } = this.state;
         const { children } = this.props;
-        console.log(hasError)
-        console.log(children)
         // 这里我的自定义降级后UI为空即<Fragment />
         return hasError ? <p>发生错误，刷新重试</p> : children;
     }

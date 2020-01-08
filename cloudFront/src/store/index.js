@@ -1,8 +1,12 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import reducer from "./reducer";
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { createContainer } from 'unstated-next'
+import useRank from './rank'
+import useUer from './user'
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-export default store;
+const composeHooks = (...hooks) => () => hooks.reduce((acc, hook) => ({ ...acc, ...hook() }), {})
+
+const Store = createContainer(composeHooks(useUer,useRank))
+
+export {
+    Store,
+}

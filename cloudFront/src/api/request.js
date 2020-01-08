@@ -37,13 +37,14 @@ service.interceptors.response.use(
   */
     const res = response.data
     console.log(res)
-    if (res.status !== 0) {
+    if (res.code !== 200) {
       return Promise.reject('error')
     } else {
       return response.data
     }
   },
   error => {
+    console.log(error)
     return Promise.reject(error)
   }
 )
